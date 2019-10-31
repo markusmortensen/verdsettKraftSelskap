@@ -1,0 +1,38 @@
+---
+title: "verdsett_kraftselskap"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{verdsett_kraftselskap}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+# library(verdsettKraftSelskap)
+devtools::load_all()
+```
+
+Denne rapporten verdsette et kraftselskap.
+
+```{r}
+df <- hent_produksjonsdata()
+
+kraftproduksjon <- hent_produksjon_for_kraftverk(df, "Novle")
+
+wacc <- kalkuler_wacc()
+```
+
+```{r}
+kraftpriser %>% 
+  kalkuler_kostnader_inntekter(kraftproduksjon) %>% 
+  kalkuler_fri_kontantflyt() %>% 
+  kalkuler_selskapsverdi(wacc)
+```
+
