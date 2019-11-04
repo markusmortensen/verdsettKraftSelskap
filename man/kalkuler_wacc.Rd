@@ -2,7 +2,7 @@
 % Please edit documentation in R/kalkuler.R
 \name{kalkuler_wacc}
 \alias{kalkuler_wacc}
-\title{Title}
+\title{Kalkulerer wacc med gitte inputverdier}
 \usage{
 kalkuler_wacc(asset_beta = 0.6, risk_free_rate = 0.02,
   market_risk_premium = 0.05, other_adj = 0.02, debt_premium = 0.025,
@@ -12,5 +12,5 @@ kalkuler_wacc(asset_beta = 0.6, risk_free_rate = 0.02,
 \item{inflation}{}
 }
 \description{
-Title
+Kalkulerer wacc med gitte inputverdier
 }

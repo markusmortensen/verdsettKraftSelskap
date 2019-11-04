@@ -2,17 +2,28 @@
 % Please edit documentation in R/kalkuler.R
 \name{kalkuler_kostnader_inntekter}
 \alias{kalkuler_kostnader_inntekter}
-\title{Title}
+\title{Legg til kostnader og inntekter}
 \usage{
 kalkuler_kostnader_inntekter(prisbane, produksjon, op_cost_kwh = 0.3,
-  inv_kwh = 0.2, dep_kwh = 0.2)
+  inv_kwh = 0.2, dep_kwh = 0.2, priskolonne = power_price)
 }
 \arguments{
-\item{dep_kwh}{}
+\item{prisbane}{data.frame med forventet prisbane. Må inneholde en
+kolonne med forventet pris. Hver rad representerer ett år.}
+
+\item{produksjon}{Årlig kraftproduksjon i kwh}
+
+\item{op_cost_kwh}{Operating costs per kwh}
+
+\item{inv_kwh}{Investment per kwh}
+
+\item{dep_kwh}{Avskrivning per kwh}
+
+\item{priskolonne}{Navn på kolonnen i prisbane som inneholder forventet pris per år}
 }
 \value{
-returener noe
+Returnerer en data.frame med kolonnene op_cost, inv, dep og inntekt.
 }
 \description{
-Title
+Denne funksjonen tar i
 }

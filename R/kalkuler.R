@@ -1,15 +1,19 @@
 
 
-#' Title
+#' Legg til kostnader og inntekter
 #'
-#' @param prisbane
-#' @param produksjon
-#' @param op_cost_kwh
-#' @param inv_kwh
-#' @param dep_kwh
+#' Denne funksjonen tar i
+#'
+#' @param prisbane data.frame med forventet prisbane. Må inneholde en
+#' kolonne med forventet pris. Hver rad representerer ett år.
+#' @param produksjon Årlig kraftproduksjon i kwh
+#' @param op_cost_kwh Operating costs per kwh
+#' @param inv_kwh Investment per kwh
+#' @param dep_kwh Avskrivning per kwh
+#' @param priskolonne Navn på kolonnen i prisbane som inneholder forventet pris per år
 #'
 #' @import dplyr
-#' @return returener noe
+#' @return Returnerer en data.frame med kolonnene op_cost, inv, dep og inntekt.
 #' @export
 #'
 #' @examples
@@ -17,19 +21,23 @@ kalkuler_kostnader_inntekter <- function(prisbane,
                                          produksjon,
                                          op_cost_kwh = 0.3,
                                          inv_kwh = 0.2,
-                                         dep_kwh = 0.2) {
+                                         dep_kwh = 0.2,
+                                         priskolonne = power_price) {
   prisbane %>%
     mutate(op_cost = produksjon * op_cost_kwh,
                   inv = produksjon * inv_kwh,
                   dep = produksjon * dep_kwh,
-                  inntekt = produksjon * power_price)
+                  inntekt = produksjon * {{priskolonne}})
 }
 
-#' Title
+#' Kalkulerer årlig fri kontantflyt
 #'
-#' @param cost_df
+#' Bør brukes i en pipeline etter \link{kalkuler_kostnader_inntekter}.
 #'
-#' @return
+#' @param cost_df data.frame som inneholder følgende felter:
+#' dep, op_cost, inv og inntekt.
+#'
+#' @return Returnerer samme data.frame som i input, med to nye kolonner; ebit og kontantflyt
 #' @export
 #'
 #' @examples
@@ -39,7 +47,7 @@ kalkuler_fri_kontantflyt <- function(cost_df) {
                   kontantflyt = ebit * (1 - .22) - inv + dep)
 }
 
-#' Title
+#' Kalkulerer wacc med gitte inputverdier
 #'
 #' @param asset_beta
 #' @param risk_free_rate
@@ -72,12 +80,14 @@ kalkuler_wacc <- function(asset_beta = .6,
 }
 
 
-#' Title
+#' Kalkuler nåverdien til selskapet
 #'
-#' @param df
-#' @param wacc
 #'
-#' @return
+#' @param df data.frame som har en kolonne kalt kontantflyt. Hver rad representerer
+#' et år, der første rad er det første året.
+#' @param wacc En numerisk verdi for wacc.
+#'
+#' @return Returnerer nåverdien for et selskap.
 #' @export
 #'
 #' @examples

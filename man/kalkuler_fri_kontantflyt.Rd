@@ -2,13 +2,17 @@
 % Please edit documentation in R/kalkuler.R
 \name{kalkuler_fri_kontantflyt}
 \alias{kalkuler_fri_kontantflyt}
-\title{Title}
+\title{Kalkulerer årlig fri kontantflyt}
 \usage{
 kalkuler_fri_kontantflyt(cost_df)
 }
 \arguments{
-\item{cost_df}{}
+\item{cost_df}{data.frame som inneholder følgende felter:
+dep, op_cost, inv og inntekt.}
+}
+\value{
+Returnerer samme data.frame som i input, med to nye kolonner; ebit og kontantflyt
 }
 \description{
-Title
+Bør brukes i en pipeline etter \link{kalkuler_kostnader_inntekter}.
 }

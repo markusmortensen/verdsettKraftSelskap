@@ -2,13 +2,19 @@
 % Please edit documentation in R/kalkuler.R
 \name{kalkuler_selskapsverdi}
 \alias{kalkuler_selskapsverdi}
-\title{Title}
+\title{Kalkuler nåverdien til selskapet}
 \usage{
 kalkuler_selskapsverdi(df, wacc)
 }
 \arguments{
-\item{wacc}{}
+\item{df}{data.frame som har en kolonne kalt kontantflyt. Hver rad representerer
+et år, der første rad er det første året.}
+
+\item{wacc}{En numerisk verdi for wacc.}
+}
+\value{
+Returnerer nåverdien for et selskap.
 }
 \description{
-Title
+Kalkuler nåverdien til selskapet
 }
