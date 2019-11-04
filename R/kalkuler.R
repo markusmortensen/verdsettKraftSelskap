@@ -8,7 +8,8 @@
 #' @param inv_kwh
 #' @param dep_kwh
 #'
-#' @return
+#' @import dplyr
+#' @return returener noe
 #' @export
 #'
 #' @examples
@@ -18,7 +19,7 @@ kalkuler_kostnader_inntekter <- function(prisbane,
                                          inv_kwh = 0.2,
                                          dep_kwh = 0.2) {
   prisbane %>%
-    dplyr::mutate(op_cost = produksjon * op_cost_kwh,
+    mutate(op_cost = produksjon * op_cost_kwh,
                   inv = produksjon * inv_kwh,
                   dep = produksjon * dep_kwh,
                   inntekt = produksjon * power_price)
@@ -34,7 +35,7 @@ kalkuler_kostnader_inntekter <- function(prisbane,
 #' @examples
 kalkuler_fri_kontantflyt <- function(cost_df) {
   cost_df %>%
-    dplyr::mutate(ebit = inntekt - op_cost,
+    mutate(ebit = inntekt - op_cost,
                   kontantflyt = ebit * (1 - .22) - inv + dep)
 }
 

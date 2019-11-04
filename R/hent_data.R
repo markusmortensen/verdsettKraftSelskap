@@ -8,6 +8,7 @@
 #'
 #' @examples
 #' # hent_produksjonsdata
+
 hent_produksjonsdata <- function() {
   jsonlite::fromJSON("https://www.nve.no/umbraco/api/Powerplant/GetHydroPowerPlantsInOperation")
 }

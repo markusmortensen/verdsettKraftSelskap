@@ -15,8 +15,8 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-# library(verdsettKraftSelskap)
-devtools::load_all()
+library(verdsettKraftSelskap)
+# devtools::load_all()
 ```
 
 Denne rapporten verdsette et kraftselskap.
