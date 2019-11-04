@@ -17,7 +17,8 @@ Imports:
     magrittr,
     dplyr,
     lubridate,
-    tidyr
+    tidyr,
+    jsonlite
 Suggests: 
     knitr,
     rmarkdown,
